@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "Fube",
+  "version": "0.6.0",
+  "description": "Feed personalizado de tus canales de YouTube.",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "activeTab",
+    "tabs",
+    "alarms",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtu.be/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "action": {
+    "default_title": "Fube",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": [
+        "storage-bridge.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "youtube-guide.js"
+      ],
+      "css": [
+        "youtube-guide.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*"
+      ],
+      "matches": [
+        "https://www.youtube.com/*"
+      ]
+    }
+  ]
+}

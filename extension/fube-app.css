@@ -1,0 +1,197 @@
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #fff;
+  color: #0f0f0f;
+  font: 14px/1.4 Roboto, Arial, sans-serif;
+}
+
+#app {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 24px 20px 48px;
+}
+
+.fube-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fube-brand img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.fube-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.fube-page h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.fube-hide {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #606060;
+  font-size: 14px;
+}
+
+.fube-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.fube-channels {
+  flex: 0 0 180px;
+  position: sticky;
+  top: 16px;
+}
+
+.fube-channels button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fube-channels button.is-active,
+.fube-channels button:hover {
+  background: #f2f2f2;
+}
+
+.fube-channels img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.fube-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.fube-empty,
+.fube-loading {
+  margin: 24px 0;
+  color: #606060;
+}
+
+.fube-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px 16px;
+}
+
+.fube-card {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fube-card.is-watched {
+  opacity: 0.55;
+}
+
+.fube-thumb-wrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f2f2f2;
+}
+
+.fube-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fube-badge {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.fube-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.fube-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.fube-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.fube-sub {
+  display: block;
+  margin-top: 2px;
+  color: #606060;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .fube-layout {
+    flex-direction: column;
+  }
+
+  .fube-channels {
+    display: flex;
+    flex: none;
+    width: 100%;
+    position: static;
+    gap: 4px;
+    overflow-x: auto;
+  }
+
+  .fube-channels button {
+    width: auto;
+    flex: 0 0 auto;
+    margin: 0;
+    white-space: nowrap;
+  }
+}

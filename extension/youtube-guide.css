@@ -1,0 +1,303 @@
+.fube-guide-item,
+.fube-mini-item {
+  box-sizing: border-box;
+  cursor: pointer;
+  color: var(--yt-spec-text-primary, #0f0f0f);
+  font-family: "Roboto", "YouTube Sans", Arial, sans-serif;
+}
+
+.fube-guide-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.fube-guide-item:hover,
+.fube-mini-item:hover,
+.fube-guide-item.is-active,
+.fube-mini-item.is-active {
+  background: var(--yt-spec-badge-chip-background, rgba(0, 0, 0, 0.05));
+}
+
+.fube-guide-item.is-active .fube-guide-label,
+.fube-mini-item.is-active .fube-mini-label {
+  font-weight: 500;
+}
+
+.fube-guide-item img {
+  display: block;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin: 0 24px 0 0;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.fube-mini-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 16px 0 14px;
+  border-radius: 10px;
+  gap: 6px;
+}
+
+.fube-mini-item img {
+  display: block;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.fube-mini-label {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+#fube-actions-wrap {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+  width: auto !important;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+#fube-actions-wrap > * {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+
+#fube-add-channel {
+  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex: 0 0 auto !important;
+  gap: 8px;
+  width: max-content !important;
+  max-width: max-content !important;
+  min-width: 0 !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  border: 0;
+  border-radius: 18px;
+  background: #f10d11;
+  color: #fff;
+  font: 500 14px "Roboto", "YouTube Sans", Arial, sans-serif;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+#fube-add-channel img {
+  display: block !important;
+  flex: 0 0 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+  margin: 0 !important;
+  border-radius: 4px;
+  object-fit: contain !important;
+  aspect-ratio: 1 / 1;
+}
+
+#fube-add-channel:hover {
+  filter: brightness(0.94);
+}
+
+#fube-add-channel.is-added {
+  background: var(--yt-spec-badge-chip-background, #f2f2f2);
+  color: var(--yt-spec-text-primary, #0f0f0f);
+  filter: none;
+}
+
+#fube-add-channel:disabled {
+  cursor: default;
+  filter: none;
+}
+
+#fube-page-host {
+  box-sizing: border-box;
+  position: fixed;
+  top: var(--ytd-masthead-height, 56px);
+  left: var(--ytd-guide-width, 240px);
+  right: 0;
+  bottom: 0;
+  z-index: 2020;
+  overflow: auto;
+  padding: 24px 32px 48px;
+  background: var(--yt-spec-base-background, #fff);
+  color: var(--yt-spec-text-primary, #0f0f0f);
+  font-family: "Roboto", "YouTube Sans", Arial, sans-serif;
+}
+
+ytd-app[guide-collapsed] #fube-page-host,
+ytd-app[mini-guide-visible] #fube-page-host {
+  left: var(--ytd-mini-guide-width, 72px);
+}
+
+.fube-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.fube-channels {
+  flex: 0 0 200px;
+  position: sticky;
+  top: 0;
+}
+
+.fube-channels button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fube-channels button.is-active,
+.fube-channels button:hover {
+  background: var(--yt-spec-badge-chip-background, rgba(0, 0, 0, 0.05));
+}
+
+.fube-channels img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.fube-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.fube-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.fube-page h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.fube-hide {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--yt-spec-text-secondary, #606060);
+}
+
+.fube-empty,
+.fube-loading {
+  margin: 24px 0;
+  color: var(--yt-spec-text-secondary, #606060);
+}
+
+.fube-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px 16px;
+}
+
+.fube-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fube-card.is-watched {
+  opacity: 0.55;
+}
+
+.fube-thumb-wrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--yt-spec-badge-chip-background, #f2f2f2);
+}
+
+.fube-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fube-badge {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.fube-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.fube-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.fube-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.fube-sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--yt-spec-text-secondary, #606060);
+  font-size: 14px;
+}

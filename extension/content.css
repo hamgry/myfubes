@@ -1,0 +1,33 @@
+#fube-bar {
+  position: fixed;
+  right: 16px;
+  bottom: 88px;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#fube-bar button {
+  border: 0;
+  border-radius: 18px;
+  font: 500 13px/1 Roboto, Arial, sans-serif;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#fube-bar button:first-child {
+  background: #ff0000;
+  color: #fff;
+}
+
+#fube-bar button:last-child {
+  background: #fff;
+  color: #0f0f0f;
+  border: 1px solid #e5e5e5;
+}
+
+#fube-bar button:hover {
+  filter: brightness(0.96);
+}

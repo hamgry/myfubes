@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-yt: #ff0000;
+  --color-yt-hover: #e5e5e5;
+  --font-sans: var(--font-roboto);
+}
+
+html,
+body {
+  background: #ffffff;
+  color: #0f0f0f;
+}
+
+body {
+  font-family: var(--font-roboto), Roboto, Arial, sans-serif;
+}
+
+::selection {
+  background: #ffd0d0;
+}
+
+input,
+button,
+textarea {
+  font: inherit;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #cccccc transparent;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

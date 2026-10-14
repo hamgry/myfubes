@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fube</title>
+    <style>
+      body {
+        margin: 0 auto;
+        max-width: 480px;
+        padding: 32px 20px 48px;
+        color: #0f0f0f;
+        font: 14px/1.4 Roboto, Arial, sans-serif;
+        background: #fff;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      header img {
+        border-radius: 8px;
+      }
+      section {
+        margin-bottom: 28px;
+        padding: 16px;
+        border: 1px solid #eee;
+        border-radius: 16px;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+      p {
+        margin: 0 0 12px;
+        color: #606060;
+      }
+      label.row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        cursor: pointer;
+      }
+      input[type="url"] {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 8px 0 12px;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font: inherit;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 10px 14px;
+        cursor: pointer;
+        font: inherit;
+      }
+      .primary {
+        background: #f10d11;
+        color: #fff;
+        font-weight: 500;
+      }
+      .secondary {
+        background: #f2f2f2;
+      }
+      #status,
+      #backupStatus {
+        min-height: 1.2em;
+        margin: 12px 0 0;
+        color: #606060;
+        font-size: 12px;
+      }
+      #backupStatus.warn {
+        color: #b42318;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon128.png" width="40" height="40" alt="" />
+      Fube
+    </header>
+
+    <section>
+      <h2>Backup diario</h2>
+      <p>
+        Guarda canales y vistos en un archivo. Elige la carpeta. Activa o
+        desactiva el guardado diario.
+      </p>
+      <label class="row">
+        <input id="backupEnabled" type="checkbox" />
+        Guardar favoritos cada día
+      </label>
+      <p id="folderName">Sin carpeta.</p>
+      <div class="actions">
+        <button id="pickFolder" class="primary" type="button">
+          Elegir carpeta
+        </button>
+        <button id="backupNow" class="secondary" type="button">
+          Guardar ahora
+        </button>
+        <button id="restoreFolder" class="secondary" type="button">
+          Restaurar
+        </button>
+        <button id="restoreFile" class="secondary" type="button">
+          Restaurar archivo
+        </button>
+      </div>
+      <p id="backupStatus"></p>
+    </section>
+
+    <section>
+      <h2>App web</h2>
+      <label>
+        URL de la app web
+        <input id="appUrl" type="url" placeholder="http://localhost:3000" />
+      </label>
+      <button id="save" class="secondary" type="button">Guardar URL</button>
+      <p id="status"></p>
+    </section>
+
+    <script src="backup.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

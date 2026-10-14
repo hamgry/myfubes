@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fube</title>
+    <style>
+      body {
+        margin: 0;
+        width: 280px;
+        color: #0f0f0f;
+        font: 14px/1.4 Roboto, Arial, sans-serif;
+        background: #fff;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 16px 10px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      header img {
+        border-radius: 6px;
+      }
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 4px 16px 12px;
+      }
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 14px;
+        text-align: left;
+        cursor: pointer;
+        font: inherit;
+      }
+      .primary {
+        background: #ff0000;
+        color: #fff;
+        font-weight: 500;
+      }
+      .secondary {
+        background: #f2f2f2;
+      }
+      button:hover {
+        filter: brightness(0.97);
+      }
+      #status {
+        min-height: 1.2em;
+        margin: 0;
+        padding: 0 16px 14px;
+        color: #606060;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon128.png" width="40" height="40" alt="" />
+      Fube
+    </header>
+    <div class="actions">
+      <button id="add" class="primary" type="button">
+        Añadir canal de esta pestaña
+      </button>
+      <button id="open" class="secondary" type="button">Abrir Fube</button>
+      <button id="panel" class="secondary" type="button">Abrir panel</button>
+      <button id="options" class="secondary" type="button">Opciones</button>
+    </div>
+    <p id="status"></p>
+    <script src="popup.js"></script>
+  </body>
+</html>
