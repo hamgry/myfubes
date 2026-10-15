@@ -131,13 +131,30 @@ function setActive(active) {
 let fubeOpen = false;
 let activeChannelId = null;
 
+function syncHostPosition(host) {
+  const app = document.querySelector("ytd-app");
+  const miniGuide = document.querySelector("ytd-mini-guide-renderer");
+  const expanded = app?.hasAttribute("guide-persistent-and-visible");
+  const miniVisible =
+    !expanded &&
+    miniGuide &&
+    miniGuide.getBoundingClientRect().width > 0;
+  host.style.left = miniVisible
+    ? "var(--ytd-mini-guide-width, 72px)"
+    : "var(--ytd-guide-width, 240px)";
+}
+
 function hostEl() {
   let host = document.getElementById(HOST_ID);
-  if (host) return host;
+  if (host) {
+    syncHostPosition(host);
+    return host;
+  }
   host = document.createElement("div");
   host.id = HOST_ID;
   host.hidden = true;
   (document.body || document.documentElement).append(host);
+  syncHostPosition(host);
   return host;
 }
 
@@ -189,6 +206,11 @@ async function renderFeed(host) {
   try {
     const response = await chrome.runtime.sendMessage({
       type: "FETCH_FEED",
+      channels: channels.map((channel) => ({
+        id: channel.id,
+        url: channel.url,
+        name: channel.name,
+      })),
       channelIds: channels.map((channel) => channel.id),
     });
     videos = response?.videos ?? [];

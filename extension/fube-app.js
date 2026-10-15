@@ -53,6 +53,11 @@ async function renderFeed(root) {
   try {
     const response = await chrome.runtime.sendMessage({
       type: "FETCH_FEED",
+      channels: channels.map((channel) => ({
+        id: channel.id,
+        url: channel.url,
+        name: channel.name,
+      })),
       channelIds: channels.map((channel) => channel.id),
     });
     videos = response?.videos ?? [];

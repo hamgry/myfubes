@@ -1,3 +1,5 @@
+importScripts("feed.js");
+
 const DEFAULT_APP_URL = "http://localhost:3000";
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -15,73 +17,6 @@ chrome.runtime.onStartup.addListener(() => {
   runDailyBackup();
 });
 
-function decodeXml(value) {
-  return value
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
-}
-
-function tag(xml, name) {
-  const match = xml.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
-  return match ? decodeXml(match[1].trim()) : "";
-}
-
-function parseRss(xml) {
-  const videos = [];
-  const chunks = xml.split("<entry>").slice(1);
-  for (const chunk of chunks) {
-    const videoId = tag(chunk, "yt:videoId");
-    if (!videoId) continue;
-    videos.push({
-      videoId,
-      channelId: tag(chunk, "yt:channelId"),
-      channelName: tag(chunk, "name") || "Canal",
-      title: tag(chunk, "title"),
-      published: tag(chunk, "published"),
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-      description: tag(chunk, "media:description"),
-    });
-  }
-  return videos;
-}
-
-async function fetchFeed(channelIds) {
-  const unique = [...new Set(channelIds.filter(Boolean))];
-  const batches = [];
-  for (let i = 0; i < unique.length; i += 4) {
-    const slice = unique.slice(i, i + 4);
-    const part = await Promise.all(
-      slice.map(async (id) => {
-        try {
-          const response = await fetch(
-            `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(id)}`,
-          );
-          if (!response.ok) return [];
-          return parseRss(await response.text());
-        } catch {
-          return [];
-        }
-      }),
-    );
-    batches.push(...part);
-  }
-  const seen = new Set();
-  const merged = [];
-  for (const video of batches.flat()) {
-    if (seen.has(video.videoId)) continue;
-    seen.add(video.videoId);
-    merged.push(video);
-  }
-  merged.sort(
-    (a, b) => new Date(b.published).getTime() - new Date(a.published).getTime(),
-  );
-  return merged;
-}
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === "OPEN_PANEL") {
     const windowId = sender.tab?.windowId;
@@ -97,8 +32,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message?.type === "FETCH_FEED") {
-    fetchFeed(message.channelIds ?? []).then((videos) => {
+    fetchFeed(message.channels, message.channelIds ?? []).then((videos) => {
       sendResponse({ videos });
+    }).catch((error) => {
+      console.error("Fube feed", error);
+      sendResponse({ videos: [] });
     });
     return true;
   }

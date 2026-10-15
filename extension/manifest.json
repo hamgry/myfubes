@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Fube",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Feed personalizado de tus canales de YouTube.",
   "permissions": [
     "sidePanel",
